@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, usedQuery } from 'react';
 import {
   Container,
   Card,
@@ -16,6 +16,8 @@ const SavedBooks = () => {
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
+
+  usedQuery();
 
   useEffect(() => {
     const getUserData = async () => {
