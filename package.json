@@ -2,7 +2,7 @@
   "name": "book-search-challenge",
   "version": "1.0.0",
   "description": "This application is a book search platform",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js --ignore client",
@@ -19,6 +19,7 @@
     "@apollo/server": "^4.10.2",
     "concurrently": "^8.2.2",
     "graphql": "^16.8.1",
+    "jwt-decode": "^4.0.0",
     "nodemon": "^3.1.0",
     "vite": "^4.4.1"
   }
