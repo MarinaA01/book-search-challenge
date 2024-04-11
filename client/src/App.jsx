@@ -5,10 +5,12 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Outlet />
-    </>
+    <ApolloProvider client={client}>
+      <div>
+        <Navbar />
+        <Outlet />
+      </div>
+    </ApolloProvider>
   );
 }
 
