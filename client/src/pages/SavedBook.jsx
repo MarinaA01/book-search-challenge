@@ -1,4 +1,4 @@
-import { useState, usedQuery } from 'react';
+import { useState, useQuery } from '@apollo/client';
 import {
   Container,
   Card,
@@ -17,7 +17,7 @@ const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
-  usedQuery(() => {
+  useQuery(() => {
     const userData = getMe();
   });
 
@@ -55,7 +55,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await useMutation(bookId, token);
+      const response = await useMutation(REMOVE_BOOK, bookId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
