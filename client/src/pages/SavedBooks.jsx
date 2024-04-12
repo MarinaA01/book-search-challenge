@@ -1,4 +1,5 @@
-import { useState, useQuery } from '@apollo/client';
+// AskBCS helped me with the Use Query issues
+import { useQuery } from '@apollo/client';
 import {
   Container,
   Card,
@@ -12,13 +13,13 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  const [loading, data] = useQuery(QUERY_ME);;
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+  const userData = data?.me || {};
 
-  useQuery(() => {
-    const userData = getMe() 
+  // useQuery(() => {
+    // const userData = getMe() 
     // {
     //   try {
     //     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -39,8 +40,8 @@ const SavedBooks = () => {
     //     console.error(err);
     //   }
     // };
-    userData();
-  }, [userDataLength]);
+    // userData();
+  // }, [userDataLength]);
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -92,7 +93,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
@@ -106,7 +107,7 @@ const SavedBooks = () => {
       <Container>
         <h2 className='pt-5'>
           {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+            ? `Viewing ${userData.savedBooks?.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
         <Row>
